@@ -6,6 +6,7 @@
 package com.froi.asignaciondecursos;
 
 import com.froi.asignaciondecursos.estructuras.ListaDobleEnlazadaC;
+import com.froi.asignaciondecursos.estructuras.ListaEnlazada;
 
 /**
  *
@@ -18,13 +19,15 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ListaDobleEnlazadaC<Integer> l = new ListaDobleEnlazadaC<>();
+        ListaEnlazada<Integer> l = new ListaEnlazada<>();
         l.insertar(1);
         l.insertar(2);
         l.insertar(3);
         l.insertar(4);
         l.insertar(5);
+        
         l.imprimirDatos();
+        System.out.println("Tamaño: " + l.getTamaño());
     }
     
 }

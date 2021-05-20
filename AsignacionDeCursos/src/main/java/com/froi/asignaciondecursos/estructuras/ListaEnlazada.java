@@ -8,50 +8,72 @@ package com.froi.asignaciondecursos.estructuras;
 /**
  *
  * @author froi-pc
- * @param <T>
  */
-public class ListaDobleEnlazadaC <T> {
+public class ListaEnlazada <T> {
     
     private Nodo<T> raiz;
     private Nodo<T> fin;
     private int tamaño;
     
-    public ListaDobleEnlazadaC() {
+    public ListaEnlazada() {
         this.raiz = null;
         this.fin = null;
         this.tamaño = 0;
     }
     
+    public void imprimirDatos() {
+        Nodo aux = raiz;
+        while(aux != null) {
+            System.out.println(aux.getData());
+            aux = aux.getSiguiente();
+        }
+    }
+    
+    /**
+     * 
+     * @param data 
+     */
     public void insertar(T data) {
         Nodo aux = new Nodo<>(data);
         
         if(raiz == null) {
             raiz = aux;
-            fin = aux;
-            raiz.setSiguiente(aux);
-            raiz.setAnterior(aux);
             tamaño++;
         } else {
-            fin.setSiguiente(aux);
-            aux.setAnterior(fin);
-            aux.setSiguiente(raiz);
-            fin = aux;
+            Nodo tmp = raiz;
+            while(tmp.getSiguiente() != null) {
+                tmp = tmp.getSiguiente();
+            }
+            tmp.setSiguiente(aux);
             tamaño++;
         }
         
     }
-    
-    /**
-     * Imprime en consola todos los datos que la lista posee
-     * @param data 
-     */
-    public void imprimirDatos() {
-        Nodo aux = raiz;
-        do {
-            System.out.println(aux.getData());
-            aux = aux.getSiguiente();
-        } while(aux != raiz);
+
+    public Nodo<T> getRaiz() {
+        return raiz;
     }
+
+    public void setRaiz(Nodo<T> raiz) {
+        this.raiz = raiz;
+    }
+
+    public Nodo<T> getFin() {
+        return fin;
+    }
+
+    public void setFin(Nodo<T> fin) {
+        this.fin = fin;
+    }
+
+    public int getTamaño() {
+        return tamaño;
+    }
+
+    public void setTamaño(int tamaño) {
+        this.tamaño = tamaño;
+    }
+    
     
     /**
      * Nodo que nos servirá para interactuar con la lista
@@ -60,13 +82,10 @@ public class ListaDobleEnlazadaC <T> {
     private class Nodo<T> {
         private T data;
         private Nodo<T> siguiente;
-        private Nodo<T> anterior;
         
-        private Nodo(T data) {
+        public Nodo(T data) {
             this.data = data;
             this.siguiente = null;
-            this.anterior = null;
-            
         }
 
         public T getData() {
@@ -84,15 +103,6 @@ public class ListaDobleEnlazadaC <T> {
         public void setSiguiente(Nodo<T> siguiente) {
             this.siguiente = siguiente;
         }
-
-        public Nodo<T> getAnterior() {
-            return anterior;
-        }
-
-        public void setAnterior(Nodo<T> anterior) {
-            this.anterior = anterior;
-        }
         
     }
-    
 }
