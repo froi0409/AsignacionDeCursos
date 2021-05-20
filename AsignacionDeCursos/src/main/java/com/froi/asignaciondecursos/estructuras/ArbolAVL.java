@@ -21,7 +21,7 @@ public class ArbolAVL <T> {
         this.tamaño = 0;
     }
     
-    public void insertarDato(T data) {
+    public void insertar(T data) {
         Nodo nuevo = new Nodo<T>(data);
         if(raiz == null) {
             raiz = nuevo;
@@ -195,7 +195,7 @@ public class ArbolAVL <T> {
             this.derecho = derecho;
         }
         
-        public int getIdentificador() {
+        public long getIdentificador() {
             if(data instanceof Integer) {
                 return (Integer) data;
             } else if(data instanceof Catedratico) {

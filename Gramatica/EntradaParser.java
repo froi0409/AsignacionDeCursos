@@ -187,11 +187,13 @@ public class EntradaParser extends java_cup.runtime.lr_parser {
 
 
     private ListaDobleEnlazadaC<Edificio> edificios;
+    private ArbolAVL<Catedratico> catedraticos;
     private JTextArea salida;
 
     public EntradaParser(EntradaLexer lexer, ManejadorPrincipal manejadorPrincipal, JTextArea salida) {
         super(lexer);
         this.edificios = manejadorPrincipal.getEdificios();
+        this.catedraticos = manejadorPrincipal.getCatedraticos();
         this.salida = salida;
         this.salida.setText("Resultado de la lectura: \n");
     }
@@ -492,7 +494,17 @@ class CUP$EntradaParser$actions {
 		int v3left = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).left;
 		int v3right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v3 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
-
+		
+                        long identificador = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); String direccion = v3.toString().replace("\"", "");
+                        try {
+                            Catedratico catedraticoProv = new Catedratico(identificador, nombre, direccion);
+                            catedraticos.insertar(catedraticoProv);
+                            salida.append(catedraticoProv + "\n\n");
+                        } catch(Exception e) {
+                            System.out.println("Error al insertar al catedrático: ");
+                            salida.append("Problemas para añadir al catedrático " + nombre + ".El catedrático ya existe o el número de identificación es muy grande\n\n");
+                        }
+                    
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("catedraticos",8, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-7)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }
           return CUP$EntradaParser$result;

@@ -10,15 +10,21 @@ package com.froi.asignaciondecursos.entidades;
  * @author froi-pc
  */
 public class Catedratico {
-    private int id;
+    private long id;
     private String nombre;
     private String direccion;
 
-    public int getId() {
+    public Catedratico(long id, String nombre, String direccion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -38,4 +44,8 @@ public class Catedratico {
         this.direccion = direccion;
     }
     
+    @Override
+    public String toString() {
+        return "Catedrático: \nId: " + id + "\nNombre: " + nombre + "\nDirección: " + direccion;
+    }
 }
