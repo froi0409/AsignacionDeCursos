@@ -1,8 +1,8 @@
 package com.froi.asignaciondecursos.gramatica;
 
-import com.froi.asignaciondecursos.entidades.Edificio;
-import com.froi.asignaciondecursos.estructuras.ListaDobleEnlazadaC;
-import com.froi.asignaciondecursos.manejadores.ManejadorPrincipal;
+import com.froi.asignaciondecursos.entidades.*;
+import com.froi.asignaciondecursos.estructuras.*;
+import com.froi.asignaciondecursos.manejadores.*;
 import java_cup.runtime.*;
 import javax.swing.JTextArea;
 
@@ -34,7 +34,7 @@ parser code{:
 
 :}
 
-terminal USUARIO, EDIFICIO, SALON, CURSO, ESTUDIANTE, CATEDRATICO, HORARIO, ASIGNAR, A_COLABORADOR, A_ESTUDIANTE, ALFANUMERICO, NUMERO;
+terminal USUARIO, EDIFICIO, SALON, CURSO, ESTUDIANTE, CATEDRATICO, HORARIO, ASIGNAR, A_COLABORADOR, A_ESTUDIANTE, A_SUPER, ALFANUMERICO, NUMERO;
 terminal PARA, PARC, PUNTO_COMA, COMA;
 
 non terminal inicio;
@@ -64,6 +64,7 @@ usuarios ::=    USUARIO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3
 
 tipo_usuario ::=    A_COLABORADOR:val       {:RESULT = val.toString();:}
                     | A_ESTUDIANTE:val      {:RESULT = val.toString();:}
+                    | A_SUPER:val           {:RESULT = val.toString();:}
                     ;
 
 edificios ::=   EDIFICIO PARA ALFANUMERICO:v1 PARC
@@ -75,6 +76,18 @@ edificios ::=   EDIFICIO PARA ALFANUMERICO:v1 PARC
                 ;
 
 salones ::=     SALON PARA ALFANUMERICO:v1 COMA NUMERO:v2 COMA NUMERO:v3 PARC
+                {:
+                    String nombre = v1.toString().replace("\"", ""); int numero = Integer.parseInt(v2.toString()); int capacidad = Integer.parseInt(v3.toString());
+                    Edificio edificio;
+                    if((edificio = edificios.buscar(nombre)) != null) {
+                        ListaEnlazada salonesEdificio = edificio.getSalones();
+                        Salon salonProv = new Salon(numero, capacidad);
+                        salonesEdificio.insertar(salonProv);
+                        salida.append("En el Edificio " + nombre + " se ha creado:\n" + salonProv + "\n\n");
+                    } else {
+                        salida.append("No se ha encontrado el edificio: " + nombre + ". El salón: " + numero + " no ha podido ser creado.\n\n");
+                    }
+                :}
                 ;
 
 cursos ::=      CURSO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA NUMERO:v3 COMA NUMERO:v4 PARC

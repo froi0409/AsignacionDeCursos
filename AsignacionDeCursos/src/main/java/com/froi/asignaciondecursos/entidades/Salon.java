@@ -13,6 +13,11 @@ public class Salon {
     private int numero;
     private int capacidad;
 
+    public Salon(int numero, int capacidad){
+        this.numero = numero;
+        this.capacidad = capacidad;
+    }
+    
     public int getNumero() {
         return numero;
     }
@@ -29,5 +34,8 @@ public class Salon {
         this.capacidad = capacidad;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Salon:\nNumero: " + numero + "\nCapacidad: " + capacidad;
+    }
 }

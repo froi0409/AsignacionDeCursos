@@ -5,6 +5,7 @@
  */
 package com.froi.asignaciondecursos.estructuras;
 
+import com.froi.asignaciondecursos.entidades.Edificio;
 import com.froi.asignaciondecursos.entidades.Usuario;
 
 /**
@@ -49,12 +50,12 @@ public class ListaDobleEnlazadaC <T> {
         if(tamaño == 1 && id.equals(raiz.getId())){
             return raiz.getData();
         }
-        while(aux.getSiguiente() != raiz) {
+        do {
             if(id.equals(aux.getId())) {
                 return (T) aux.getData();
             }
             aux = aux.getSiguiente();
-        }
+        } while(aux != raiz);
         return null;
     }
     
@@ -94,6 +95,9 @@ public class ListaDobleEnlazadaC <T> {
             if(data instanceof Usuario) {
                 Usuario prov = (Usuario) data;
                 return prov.getUsuario();
+            } else if(data instanceof Edificio) {
+                Edificio prov = (Edificio) data;
+                return prov.getNombre();
             } else {
                 return null;
             }

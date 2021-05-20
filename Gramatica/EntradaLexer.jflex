@@ -22,6 +22,7 @@ ASIGNAR = "Asignar"
 
 A_COLABORADOR = "colaborador"
 A_ESTUDIANTE = "estudiante"
+A_SUPER = "super"
 
 COMILLAS = ( [\“] | [\”] | [\"] )
 
@@ -47,6 +48,7 @@ PUNTO_COMA = ";"
     {ASIGNAR}       {return new Symbol(ASIGNAR, yyline+1, yycolumn+1, yytext());}
     {A_COLABORADOR} {return new Symbol(A_COLABORADOR, yyline+1, yycolumn+1, yytext());}
     {A_ESTUDIANTE}  {return new Symbol(A_ESTUDIANTE, yyline+1, yycolumn+1, yytext());}
+    {A_SUPER}       {return new Symbol(A_SUPER, yyline+1, yycolumn+1, yytext());}
     {ALFANUMERICO}  {return new Symbol(ALFANUMERICO, yyline+1, yycolumn+1, yytext());}
     {NUMERO}        {return new Symbol(NUMERO, yyline+1, yycolumn+1, yytext());}
     {PARA}          {return new Symbol(PARA, yyline+1, yycolumn+1, yytext());}

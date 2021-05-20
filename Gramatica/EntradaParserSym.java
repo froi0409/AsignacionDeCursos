@@ -10,19 +10,20 @@ public class EntradaParserSym {
   /* terminals */
   public static final int SALON = 4;
   public static final int HORARIO = 8;
-  public static final int PARC = 15;
-  public static final int PARA = 14;
+  public static final int PARC = 16;
+  public static final int PARA = 15;
   public static final int ASIGNAR = 9;
   public static final int A_ESTUDIANTE = 11;
-  public static final int COMA = 17;
+  public static final int COMA = 18;
   public static final int EOF = 0;
   public static final int EDIFICIO = 3;
-  public static final int ALFANUMERICO = 12;
+  public static final int ALFANUMERICO = 13;
   public static final int error = 1;
-  public static final int NUMERO = 13;
+  public static final int NUMERO = 14;
   public static final int USUARIO = 2;
+  public static final int A_SUPER = 12;
   public static final int ESTUDIANTE = 6;
-  public static final int PUNTO_COMA = 16;
+  public static final int PUNTO_COMA = 17;
   public static final int A_COLABORADOR = 10;
   public static final int CATEDRATICO = 7;
   public static final int CURSO = 5;
@@ -39,6 +40,7 @@ public class EntradaParserSym {
   "ASIGNAR",
   "A_COLABORADOR",
   "A_ESTUDIANTE",
+  "A_SUPER",
   "ALFANUMERICO",
   "NUMERO",
   "PARA",
