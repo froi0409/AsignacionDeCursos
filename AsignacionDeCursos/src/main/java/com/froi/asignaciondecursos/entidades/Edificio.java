@@ -3,22 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.froi.asignaciondecursos;
+package com.froi.asignaciondecursos.entidades;
 
-import com.froi.asignaciondecursos.estructuras.ListaDobleEnlazadaC;
 import com.froi.asignaciondecursos.estructuras.ListaEnlazada;
 
 /**
  *
  * @author froi-pc
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class Edificio {
+    private String nombre;
+    private ListaEnlazada<Salon> salones;
     
+    public Edificio() {
+        this.salones = new ListaEnlazada<>();
+    }
 }
