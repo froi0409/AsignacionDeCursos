@@ -34,46 +34,6 @@ public class ArbolAVL <T> {
     public Nodo<T> insertarDato(Nodo<T> nuevo, Nodo<T> aux) {
         System.out.println("a: " + nuevo.getData());
         Nodo<T> padre = aux;
-        /*
-        if(nuevo.getIdentificador() < aux.getIdentificador()) {
-            if(aux.getIzquierdo() == null) {
-                aux.setIzquierdo(nuevo);
-            } else {
-                aux.setIzquierdo(insertarDato(nuevo, aux.getIzquierdo()));
-                //Se verifica si es necesario equilibrar el arbol
-                if((factE(aux.getIzquierdo()) - factE(aux.getDerecho())) == 2) {
-                    if(factE(aux.getIzquierdo().getIzquierdo()) - factE(aux.getIzquierdo().getDerecho()) == -1) {
-                        padre = rotacionDobleIzquierda(aux);
-                    } else if(nuevo.getIdentificador() < aux.getIdentificador()) {
-                        padre = rotacionIzquierda(aux);
-                    } else {
-                        padre = rotacionDerecha(aux);
-                    }
-                }
-            }
-        } else if(nuevo.getIdentificador() > aux.getIdentificador()) {
-            if(aux.getDerecho() == null) {
-                aux.setDerecho(nuevo);
-            } else {
-                aux.setDerecho(insertarDato(nuevo, aux.getDerecho()));
-                //Se verifica si es necesario equilibrar el arbol
-                if((factE(aux.getIzquierdo()) - factE(aux.getDerecho())) == -2) {
-                    if(factE(aux.getDerecho().getIzquierdo()) - factE(aux.getDerecho().getDerecho()) == 1) {
-                        padre = rotacionDobleDerecha(aux);
-                    } else if(nuevo.getIdentificador() < aux.getDerecho().getIdentificador()) {
-                        padre = rotacionIzquierda(aux);
-                    } else {
-                        padre = rotacionDerecha(aux);
-                    }                    
-                }
-            }
-        } else {
-            //throw new RuntimeException("Nodo de árbol AVL está repetido");
-            System.err.println("NODO REPETIDO: " + aux.getData());
-        }
-        equilibrar(aux);
-        return padre;
-        */
         
         if(nuevo.getIdentificador() < aux.getIdentificador()) {
             if(aux.getIzquierdo() == null) {
@@ -112,6 +72,8 @@ public class ArbolAVL <T> {
                 }
             }
         } else {
+            System.err.println("Nodo Repetido");
+            throw new RuntimeException("Nodo Repetido");
             
         }
         equilibrar(aux);
@@ -180,6 +142,17 @@ public class ArbolAVL <T> {
         imprimirDatos(nodo.getIzquierdo());
         System.out.println(nodo.getData());
         imprimirDatos(nodo.getDerecho());
+    }
+    
+    public void imprimirPO() {
+        imprimirPO(raiz);
+    }
+    
+    public void imprimirPO(Nodo<T> nodo) {
+        if(nodo  == null) return;
+        imprimirPO(nodo.getIzquierdo());
+        imprimirPO(nodo.getDerecho());
+        System.out.println(nodo.getData());
     }
     
     /**

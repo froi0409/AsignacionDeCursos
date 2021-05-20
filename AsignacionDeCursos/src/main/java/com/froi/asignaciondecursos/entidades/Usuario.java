@@ -15,6 +15,13 @@ public class Usuario {
     private String contraseña;
     private String tipo;
 
+    public Usuario(String usuario, String nombre, String contraseña, String tipo) {
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+        this.tipo = tipo;
+    }
+    
     public String getUsuario() {
         return usuario;
     }

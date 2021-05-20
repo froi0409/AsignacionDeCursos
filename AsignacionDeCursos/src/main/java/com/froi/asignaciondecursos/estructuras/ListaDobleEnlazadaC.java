@@ -5,6 +5,8 @@
  */
 package com.froi.asignaciondecursos.estructuras;
 
+import com.froi.asignaciondecursos.entidades.Usuario;
+
 /**
  *
  * @author froi-pc
@@ -41,6 +43,21 @@ public class ListaDobleEnlazadaC <T> {
         
     }
     
+    public T buscar(String id) {
+        Nodo aux = raiz;
+        //Si la lista solo posee raiz, retornamos la raiz
+        if(tamaño == 1 && id.equals(raiz.getId())){
+            return raiz.getData();
+        }
+        while(aux.getSiguiente() != raiz) {
+            if(id.equals(aux.getId())) {
+                return (T) aux.getData();
+            }
+            aux = aux.getSiguiente();
+        }
+        return null;
+    }
+    
     /**
      * Imprime en consola todos los datos que la lista posee
      * @param data 
@@ -73,6 +90,15 @@ public class ListaDobleEnlazadaC <T> {
             return data;
         }
 
+        public String getId() {
+            if(data instanceof Usuario) {
+                Usuario prov = (Usuario) data;
+                return prov.getUsuario();
+            } else {
+                return null;
+            }
+        }
+        
         public void setData(T data) {
             this.data = data;
         }

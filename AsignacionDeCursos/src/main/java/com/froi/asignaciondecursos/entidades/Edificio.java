@@ -15,8 +15,9 @@ public class Edificio {
     private String nombre;
     private ListaEnlazada<Salon> salones;
     
-    public Edificio() {
+    public Edificio(String nombre) {
         this.salones = new ListaEnlazada<>();
+        this.nombre = nombre;
     }
 
     public String getNombre() {
@@ -33,6 +34,11 @@ public class Edificio {
 
     public void setSalones(ListaEnlazada<Salon> salones) {
         this.salones = salones;
+    }
+    
+    @Override
+    public String toString() {
+        return "Edificio:\nNombre: " + nombre;
     }
     
 }
