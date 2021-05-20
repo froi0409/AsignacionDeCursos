@@ -18,4 +18,21 @@ public class Edificio {
     public Edificio() {
         this.salones = new ListaEnlazada<>();
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public ListaEnlazada<Salon> getSalones() {
+        return salones;
+    }
+
+    public void setSalones(ListaEnlazada<Salon> salones) {
+        this.salones = salones;
+    }
+    
 }
