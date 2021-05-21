@@ -193,6 +193,74 @@ public class ListaDobleEnlazadaC <T> {
         } while(aux != raiz);
     }
     
+    public String dotCodeEdificios() {
+        String codigo = "";
+        codigo += "digraph listaDoble {\n";
+        codigo += "node [shape = box]\n";
+        codigo += "edge [dir = both]\n";
+        codigo += "e0[ shape = point, width = 0 ];\n";
+        codigo += "e1[ shape = point, width = 0 ];\n";
+        
+        Nodo aux = raiz;
+        do {
+            codigo += "nodo" + aux.getIdLong() + " [ label =\"" + aux.getData() + "\"];\n";
+            aux = aux.getSiguiente();
+        }while(aux != raiz);
+        
+        aux = raiz;
+            codigo += "rank = same { ";
+        do {
+            if(aux == raiz) {
+                codigo += "nodo" + aux.getIdLong() ;
+            } else {
+                codigo += "->nodo" + aux.getIdLong();
+            }
+            if(aux.getSiguiente() == raiz) {
+                codigo += "->nodo" + aux.getSiguiente().getIdLong();
+            }
+
+            aux = aux.getSiguiente();
+        } while (aux != raiz);
+        codigo += " };\n";
+        
+        codigo += "}\n";
+        return codigo;
+    }
+    
+    public String dotCodeUsuarios() {
+        String codigo = "";
+        codigo += "digraph listaDoble {\n";
+        codigo += "node [shape = box]\n";
+        codigo += "edge [dir = both]\n";
+        codigo += "e0[ shape = point, width = 0 ];\n";
+        codigo += "e1[ shape = point, width = 0 ];\n";
+        
+        Nodo aux = raiz;
+        do {
+            codigo += "nodo" + aux.getId() + " [ label =\"" + aux.getData() + "\"];\n";
+            aux = aux.getSiguiente();
+        }while(aux != raiz);
+        
+        aux = raiz;
+            codigo += "rank = same { ";
+            do {
+                if(aux == raiz) {
+                    codigo += "nodo" + aux.getId() ;
+                } else {
+                    codigo += "->nodo" + aux.getId();
+                }
+                if(aux.getSiguiente() == raiz) {
+                    codigo += "->nodo" + aux.getSiguiente().getId();
+                }
+                
+                aux = aux.getSiguiente();
+            } while (aux != raiz);
+            codigo += " };\n";
+        
+        codigo += "}\n";
+        return codigo;
+    }
+    
     /**
      * Nodo que nos servirá para interactuar con la lista
      * @param <T> 

@@ -52,22 +52,21 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="btnUsuarios" pref="254" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnEdificios" max="32767" attributes="0"/>
-                      <Component id="btnSalones" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnCursos" max="32767" attributes="0"/>
-                      <Component id="btnCatedraticos" max="32767" attributes="0"/>
-                      <Component id="btnAsignaciones" pref="254" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEdificios" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnSalones" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnCursos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnCatedraticos" alignment="0" pref="254" max="32767" attributes="0"/>
+                  <Component id="btnEstudiantes" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnGrafEdificios" max="32767" attributes="0"/>
                   <Component id="btnGrafSalones" max="32767" attributes="0"/>
                   <Component id="btnGrafCursos" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnGrafCatedraticos" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnGrafAsignaciones" alignment="0" pref="141" max="32767" attributes="0"/>
+                  <Component id="btnGrafAsignaciones" alignment="0" pref="153" max="32767" attributes="0"/>
+                  <Component id="btnGrafUsuarios" alignment="1" pref="153" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -100,11 +99,14 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAsignaciones" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEstudiantes" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnGrafAsignaciones" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnUsuarios" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGrafUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -139,10 +141,13 @@
         <Property name="text" type="java.lang.String" value="Catedr&#xe1;ticos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAsignaciones">
+    <Component class="javax.swing.JButton" name="btnEstudiantes">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Asignaciones"/>
+        <Property name="text" type="java.lang.String" value="Estudiantes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstudiantesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnGrafEdificios">
       <Properties>
@@ -171,6 +176,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Graficar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGrafAsignacionesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUsuarios">
       <Properties>
@@ -178,6 +186,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGrafUsuarios">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Graficar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGrafUsuariosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

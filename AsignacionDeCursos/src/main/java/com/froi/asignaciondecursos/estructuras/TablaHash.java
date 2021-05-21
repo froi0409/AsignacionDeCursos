@@ -29,14 +29,15 @@ public class TablaHash {
     public Estudiante buscar(long carnet) {
         int posicion = funcionDispersion(carnet, tamañoArray);
         int cont = 0;
-        if(array[posicion].getCarnet() == carnet) {
+        System.out.println("posicion: " + posicion + " - tamaño: " + tamañoArray);
+        if( array[posicion] != null && array[posicion].getCarnet() == carnet) {
             return array[posicion];
         } else {
             boolean comprobador = false;
             do{
                 cont++;
                 posicion = dobleDispersion(carnet, cont);
-                if(array[posicion].getCarnet() == carnet) {
+                if(array[posicion] != null && array[posicion].getCarnet() == carnet) {
                     return array[posicion];
                 } else if(array[posicion] == null) {
                     comprobador = true;
@@ -53,7 +54,7 @@ public class TablaHash {
     
     public void insertar(Estudiante data) {
         Estudiante prov = data;
-        double factorActual = (double) tamaño / tamañoArray;
+        double factorActual = (double) (tamaño+1) / tamañoArray;
         System.out.println("factor: " + factorActual + " = " + tamaño + " / " + tamañoArray);
         if(factorActual < factorCarga) {
             int posicion = funcionDispersion(prov.getCarnet(), tamañoArray);
@@ -151,6 +152,35 @@ public class TablaHash {
     
     public int funcionDispersion(long llave, int tamaño) {
         return (int) llave % tamaño;
+    }
+    
+    
+    public String dotCode() {
+        String codigo = "";
+        codigo += "digraph G {\n";
+        codigo += "nodesep=.05;\nrankdir=LR;\nnode[shape=record,width=.1,height=.1];\n";
+        codigo += "\n\n";
+        codigo += "nodeo0 [label = \"";
+        for(int i = 0; i < tamañoArray; i++) {
+            codigo += "<f" + i + "> | ";
+        }
+        codigo += "\", height=2.5];\n";
+        
+        codigo += "node [width = 1.5];\n";
+        for(int i = 0; i < tamañoArray; i++) {
+            if(array[i] != null) {
+                codigo += "nodo" + i + "[label = \"{ <n> " + array[i].getCarnet() + "}\"];\n";
+            }
+        }
+        
+        for(int i = 0; i < tamañoArray; i++) {
+            if(array[i] != null) {
+                codigo += "nodeo0:f" + i +" -> nodo" + i + ":n;\n" ;
+            }
+        }
+        
+        codigo += "\n}";
+        return codigo;
     }
     
     /**

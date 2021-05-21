@@ -5,6 +5,7 @@
  */
 package com.froi.asignaciondecursos.frontend;
 
+import com.froi.asignaciondecursos.manejadores.ManejadorGrafico;
 import com.froi.asignaciondecursos.manejadores.ManejadorPrincipal;
 import javax.swing.JFrame;
 
@@ -48,13 +49,14 @@ public class InicioSuper extends javax.swing.JFrame {
         btnSalones = new javax.swing.JButton();
         btnCursos = new javax.swing.JButton();
         btnCatedraticos = new javax.swing.JButton();
-        btnAsignaciones = new javax.swing.JButton();
+        btnEstudiantes = new javax.swing.JButton();
         btnGrafEdificios = new javax.swing.JButton();
         btnGrafSalones = new javax.swing.JButton();
         btnGrafCursos = new javax.swing.JButton();
         btnGrafCatedraticos = new javax.swing.JButton();
         btnGrafAsignaciones = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
+        btnGrafUsuarios = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -81,7 +83,12 @@ public class InicioSuper extends javax.swing.JFrame {
 
         btnCatedraticos.setText("Catedráticos");
 
-        btnAsignaciones.setText("Asignaciones");
+        btnEstudiantes.setText("Estudiantes");
+        btnEstudiantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstudiantesActionPerformed(evt);
+            }
+        });
 
         btnGrafEdificios.setText("Graficar");
 
@@ -97,11 +104,23 @@ public class InicioSuper extends javax.swing.JFrame {
         btnGrafCatedraticos.setText("Graficar");
 
         btnGrafAsignaciones.setText("Graficar");
+        btnGrafAsignaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrafAsignacionesActionPerformed(evt);
+            }
+        });
 
         btnUsuarios.setText("Usuarios");
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
+            }
+        });
+
+        btnGrafUsuarios.setText("Graficar");
+        btnGrafUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrafUsuariosActionPerformed(evt);
             }
         });
 
@@ -127,20 +146,20 @@ public class InicioSuper extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(btnEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCatedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEdificios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCursos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCatedraticos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(btnEstudiantes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGrafEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGrafSalones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGrafCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnGrafCatedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGrafAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                    .addComponent(btnGrafAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addComponent(btnGrafUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,10 +185,12 @@ public class InicioSuper extends javax.swing.JFrame {
                     .addComponent(btnGrafCatedraticos))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAsignaciones)
+                    .addComponent(btnEstudiantes)
                     .addComponent(btnGrafAsignaciones))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUsuarios)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUsuarios)
+                    .addComponent(btnGrafUsuarios))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -201,6 +222,27 @@ public class InicioSuper extends javax.swing.JFrame {
         VentanaUsuarios v = new VentanaUsuarios(manejadorPrincipal);
         v.setVisible(true);
     }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstudiantesActionPerformed
+        // TODO add your handling code here:
+        VentanaEstudiantes v = new VentanaEstudiantes(manejadorPrincipal);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnEstudiantesActionPerformed
+
+    private void btnGrafUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafUsuariosActionPerformed
+        ManejadorGrafico m = new ManejadorGrafico();
+        String dotCode = manejadorPrincipal.getUsuarios().dotCodeUsuarios();
+        m.graficarEstadoMemoria(dotCode, "usuarios");
+        
+        
+    }//GEN-LAST:event_btnGrafUsuariosActionPerformed
+
+    private void btnGrafAsignacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafAsignacionesActionPerformed
+        // TODO add your handling code here:
+        ManejadorGrafico m = new ManejadorGrafico();
+        String dotCode = manejadorPrincipal.getEstudiantes().dotCode();
+        m.graficarEstadoMemoria(dotCode, "estudiantes");
+    }//GEN-LAST:event_btnGrafAsignacionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,15 +280,16 @@ public class InicioSuper extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAsignaciones;
     private javax.swing.JButton btnCatedraticos;
     private javax.swing.JButton btnCursos;
     private javax.swing.JButton btnEdificios;
+    private javax.swing.JButton btnEstudiantes;
     private javax.swing.JButton btnGrafAsignaciones;
     private javax.swing.JButton btnGrafCatedraticos;
     private javax.swing.JButton btnGrafCursos;
     private javax.swing.JButton btnGrafEdificios;
     private javax.swing.JButton btnGrafSalones;
+    private javax.swing.JButton btnGrafUsuarios;
     private javax.swing.JButton btnSalones;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JLabel jLabel1;
