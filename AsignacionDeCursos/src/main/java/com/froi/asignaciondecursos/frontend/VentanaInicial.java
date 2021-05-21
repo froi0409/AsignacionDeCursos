@@ -119,8 +119,17 @@ public class VentanaInicial extends javax.swing.JFrame {
             if(pass.equals(usuario.getContraseña())) {
                 switch(usuario.getTipo()) {
                     case "super":
-                        InicioSuper inicio = new InicioSuper(manejadorPrincipal);
+                        InicioSuper inicio = new InicioSuper(manejadorPrincipal, this);
+                        this.setVisible(false);
                         inicio.setVisible(true);
+                        break;
+                    case "estudiante":
+                        
+                        break;
+                    case "colaborador":
+                        InicioColaborador inicioC = new InicioColaborador(manejadorPrincipal, this);
+                        this.setVisible(false);
+                        inicioC.setVisible(true);
                         break;
                 }
             } else {
@@ -129,7 +138,8 @@ public class VentanaInicial extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No hay usuarios coincidentes");
         }
-        
+        txtUsuario.setText("");
+        txtPassword.setText("");
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

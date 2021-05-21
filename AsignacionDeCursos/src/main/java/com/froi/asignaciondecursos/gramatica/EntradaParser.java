@@ -366,7 +366,7 @@ class CUP$EntradaParser$actions {
 		String v4 = (String)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
                     try {
-                        String usuario = v1.toString(); String nombre = v2.toString().replace("\"", ""); String contraseña = v3.toString(); String tipo = v4;
+                        String usuario = v1.toString(); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); String contraseña = v3.toString().replace("\"", "").replace("”", "").replace("“", ""); String tipo = v4;
                         if(tipo.equals("estudiante")) {
                             Estudiante estudiante;
                             if((estudiante = estudiantes.buscar(Integer.parseInt(usuario))) != null) {
@@ -433,7 +433,7 @@ class CUP$EntradaParser$actions {
 		int v1right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v1 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
-                    Edificio edificio = new Edificio(v1.toString().replace("\"", ""));
+                    Edificio edificio = new Edificio(v1.toString().replace("\"", "").replace("”", "").replace("“", ""));
                     edificios.insertar(edificio);
                     salida.append(edificio + "\n\n");
                 
@@ -455,7 +455,7 @@ class CUP$EntradaParser$actions {
 		int v3right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v3 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
-                    String nombre = v1.toString().replace("\"", ""); int numero = Integer.parseInt(v2.toString()); int capacidad = Integer.parseInt(v3.toString());
+                    String nombre = v1.toString().replace("\"", "").replace("”", "").replace("“", ""); int numero = Integer.parseInt(v2.toString()); int capacidad = Integer.parseInt(v3.toString());
                     Edificio edificio;
                     if((edificio = edificios.buscar(nombre)) != null) {
                         ListaEnlazada salonesEdificio = edificio.getSalones();
@@ -488,7 +488,7 @@ class CUP$EntradaParser$actions {
 		Object v4 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
                     try {
-                        long codigo = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); int semestre = Integer.parseInt(v3.toString()); int creditos = Integer.parseInt(v4.toString());
+                        long codigo = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); int semestre = Integer.parseInt(v3.toString()); int creditos = Integer.parseInt(v4.toString());
                         Curso curso = new Curso(codigo, nombre, semestre, creditos);
                         cursos.insertar(curso);
                         salida.append(curso + "\n\n");
@@ -515,7 +515,7 @@ class CUP$EntradaParser$actions {
 		int v3right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v3 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
-                    long carnet = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); String direccion = v3.toString().replace("\"", "");
+                    long carnet = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); String direccion = v3.toString().replace("\"", "").replace("”", "").replace("“", "");
                     try {
                         Estudiante estudianteProv = new Estudiante(carnet, nombre, direccion);
                         estudiantes.insertar(estudianteProv);
@@ -542,7 +542,7 @@ class CUP$EntradaParser$actions {
 		int v3right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v3 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
-                        long identificador = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); String direccion = v3.toString().replace("\"", "");
+                        long identificador = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); String direccion = v3.toString().replace("\"", "").replace("”", "").replace("“", "");
                         try {
                             Catedratico catedraticoProv = new Catedratico(identificador, nombre, direccion);
                             catedraticos.insertar(catedraticoProv);

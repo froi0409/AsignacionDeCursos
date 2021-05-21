@@ -30,6 +30,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -45,15 +48,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEdificios" max="32767" attributes="0"/>
-                  <Component id="btnSalones" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btnCursos" max="32767" attributes="0"/>
-                  <Component id="btnCatedraticos" max="32767" attributes="0"/>
-                  <Component id="btnAsignaciones" pref="254" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="btnUsuarios" pref="254" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEdificios" max="32767" attributes="0"/>
+                      <Component id="btnSalones" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnCursos" max="32767" attributes="0"/>
+                      <Component id="btnCatedraticos" max="32767" attributes="0"/>
+                      <Component id="btnAsignaciones" pref="254" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -97,6 +103,8 @@
                   <Component id="btnAsignaciones" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnGrafAsignaciones" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnUsuarios" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -163,6 +171,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Graficar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUsuarios">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Usuarios"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

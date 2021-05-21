@@ -81,6 +81,8 @@ public class ListaDobleEnlazadaC <T> {
         if(tamaño == 1 && raiz.getIdLong() == id) {
             raiz.data = null;
             raiz = null;
+            tamaño--;
+            return true;
         }
         if(raiz.getIdLong() == id) {
             raiz.getSiguiente().setAnterior(fin);
@@ -88,6 +90,7 @@ public class ListaDobleEnlazadaC <T> {
             raiz = raiz.getSiguiente();
             aux.setData(null);
             aux = null;
+            tamaño--;
             return true;
         } else if(fin.getIdLong() == id) {
             aux = fin;
@@ -96,6 +99,7 @@ public class ListaDobleEnlazadaC <T> {
             fin = fin.getAnterior();
             aux.setData(null);
             aux = null;
+            tamaño--;
             return true;
         }
         do {
@@ -104,6 +108,7 @@ public class ListaDobleEnlazadaC <T> {
                 aux.getAnterior().setSiguiente(aux.getSiguiente());
                 aux.setData(null);
                 aux = null;
+                tamaño--;
                 return true;
             }
             aux = aux.getSiguiente();
@@ -117,6 +122,8 @@ public class ListaDobleEnlazadaC <T> {
         if(tamaño == 1 && raiz.getId().equals(id)) {
             raiz.data = null;
             raiz = null;
+            tamaño--;
+            return true;
         }
         if(raiz.getId().equals(id)) {
             raiz.getSiguiente().setAnterior(fin);
@@ -124,6 +131,7 @@ public class ListaDobleEnlazadaC <T> {
             raiz = raiz.getSiguiente();
             aux.setData(null);
             aux = null;
+            tamaño--;
             return true;
         } else if(fin.getId().equals(id)) {
             aux = fin;
@@ -132,6 +140,7 @@ public class ListaDobleEnlazadaC <T> {
             fin = fin.getAnterior();
             aux.setData(null);
             aux = null;
+            tamaño--;
             return true;
         }
         do {
@@ -140,6 +149,7 @@ public class ListaDobleEnlazadaC <T> {
                 aux.getAnterior().setSiguiente(aux.getSiguiente());
                 aux.setData(null);
                 aux = null;
+                tamaño--;
                 return true;
             }
             aux = aux.getSiguiente();

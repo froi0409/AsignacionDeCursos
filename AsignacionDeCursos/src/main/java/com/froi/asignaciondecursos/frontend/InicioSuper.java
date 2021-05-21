@@ -6,6 +6,7 @@
 package com.froi.asignaciondecursos.frontend;
 
 import com.froi.asignaciondecursos.manejadores.ManejadorPrincipal;
+import javax.swing.JFrame;
 
 /**
  *
@@ -14,15 +15,19 @@ import com.froi.asignaciondecursos.manejadores.ManejadorPrincipal;
 public class InicioSuper extends javax.swing.JFrame {
 
     private ManejadorPrincipal manejadorPrincipal;
+    private JFrame ventanaInicial;
     
     /**
      * Creates new form InicioSuper
      * @param manejadorPrincipal
+     * @param ventanaInicial
      */
-    public InicioSuper(ManejadorPrincipal manejadorPrincipal) {
+    public InicioSuper(ManejadorPrincipal manejadorPrincipal, JFrame ventanaInicial) {
         initComponents();
         this.manejadorPrincipal = manejadorPrincipal;
+        this.ventanaInicial = ventanaInicial;
         this.setLocationRelativeTo(null);
+       
     }
 
     private InicioSuper() {
@@ -49,11 +54,17 @@ public class InicioSuper extends javax.swing.JFrame {
         btnGrafCursos = new javax.swing.JButton();
         btnGrafCatedraticos = new javax.swing.JButton();
         btnGrafAsignaciones = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("Opciones:");
 
@@ -87,6 +98,13 @@ public class InicioSuper extends javax.swing.JFrame {
 
         btnGrafAsignaciones.setText("Graficar");
 
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Acciones");
 
         jMenuItem1.setText("Cargar Archivo");
@@ -107,13 +125,15 @@ public class InicioSuper extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(btnEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCatedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1)
+                        .addComponent(btnEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCatedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGrafEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,6 +168,8 @@ public class InicioSuper extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAsignaciones)
                     .addComponent(btnGrafAsignaciones))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnUsuarios)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -169,6 +191,16 @@ public class InicioSuper extends javax.swing.JFrame {
     private void btnGrafCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafCursosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGrafCursosActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        ventanaInicial.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        // TODO add your handling code here:
+        VentanaUsuarios v = new VentanaUsuarios(manejadorPrincipal);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +248,7 @@ public class InicioSuper extends javax.swing.JFrame {
     private javax.swing.JButton btnGrafEdificios;
     private javax.swing.JButton btnGrafSalones;
     private javax.swing.JButton btnSalones;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
