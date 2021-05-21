@@ -1,0 +1,32 @@
+digraph listaDoble {
+node [shape = box]
+edge [dir = both]
+e0[ shape = point, width = 0 ];
+e1[ shape = point, width = 0 ];
+nodo777 [ label ="Curso:
+Codigo: 777
+Nombre: compiladores1
+Semestre: 5
+Creditos: 4"];
+nodo771 [ label ="Curso:
+Codigo: 771
+Nombre: programacion2
+Semestre: 4
+Creditos: 4"];
+nodo779 [ label ="Curso:
+Codigo: 779
+Nombre: Arquitectura de computadoras y ensambladores 2
+Semestre: 7
+Creditos: 4"];
+nodo732 [ label ="Curso:
+Codigo: 732
+Nombre: Estadistica 1
+Semestre: 4
+Creditos: 4"];
+nodo795 [ label ="Curso:
+Codigo: 795
+Nombre: Leguajes formales
+Semestre: 4
+Creditos: 4"];
+rank = same { nodo777->nodo771->nodo779->nodo732->nodo795->nodo777 };
+}

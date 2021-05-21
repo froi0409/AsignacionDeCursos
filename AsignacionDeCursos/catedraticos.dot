@@ -1,0 +1,13 @@
+digraph arbol {
+rankdir=TB
+node [shape = record];
+nodo12445 [ label ="<C0>|12445\nProf3\nCiudad|<C1>"];
+nodo12345 [ label ="<C0>|12345\nProf1\nCiudad|<C1>"];
+nodo12365 [ label ="12365\nProf5\nCiudad"];
+nodo12345:C1->nodo12365
+nodo12445:C0->nodo12345
+nodo47854 [ label ="<C0>|47854\nProf2\nCiudad|<C1>"];
+nodo47354 [ label ="47354\nProf4\nCiudad"];
+nodo47854:C0->nodo47354
+nodo12445:C1->nodo47854
+}

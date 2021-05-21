@@ -169,7 +169,7 @@ public class TablaHash {
         codigo += "node [width = 1.5];\n";
         for(int i = 0; i < tamañoArray; i++) {
             if(array[i] != null) {
-                codigo += "nodo" + i + "[label = \"{ <n> " + array[i].getCarnet() + "}\"];\n";
+                codigo += "nodo" + i + "[label = \"{ <n> " + array[i].getCarnet() + "-" + array[i].getNombre() + "-" + array[i].getDireccion() +  "}\"];\n";
             }
         }
         

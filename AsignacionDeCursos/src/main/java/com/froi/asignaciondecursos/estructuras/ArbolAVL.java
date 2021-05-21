@@ -184,6 +184,34 @@ public class ArbolAVL <T> {
         System.out.println(nodo.getData());
     }
     
+    public String dotCode() {
+        String dotCode = "";
+        dotCode += "digraph arbol {\n";
+        dotCode += "rankdir=TB\n";
+        dotCode += "node [shape = record];\n";
+        dotCode += getCodigoNodos((Nodo<Catedratico>) raiz);
+        dotCode += "}\n";
+        return dotCode;
+    }
+    
+    public String getCodigoNodos(Nodo<Catedratico> nodo) {
+        String codigoNodos = "";
+        if(raiz != null) {
+            if(nodo.getIzquierdo() == null && nodo.getDerecho() == null) {
+                codigoNodos += "nodo" + nodo.getIdentificador() + " [ label =\"" + nodo.getData().getId() + "\\n" + nodo.getData().getNombre() + "\\n" + nodo.getData().getDireccion() + "\"];\n";
+            } else {
+                codigoNodos += "nodo" + nodo.getIdentificador() + " [ label =\"<C0>|" + nodo.getData().getId() + "\\n" + nodo.getData().getNombre() + "\\n" + nodo.getData().getDireccion() +"|<C1>\"];\n";
+            }
+            if(nodo.getIzquierdo() != null) {
+                codigoNodos += getCodigoNodos(nodo.getIzquierdo()) + "nodo" + nodo.getIdentificador() +":C0->nodo" + nodo.getIzquierdo().getIdentificador() + "\n";
+            }
+            if(nodo.getDerecho() != null) {
+                codigoNodos += getCodigoNodos(nodo.getDerecho()) + "nodo" + nodo.getIdentificador() +":C1->nodo" + nodo.getDerecho().getIdentificador() + "\n";
+            }
+        }
+        return codigoNodos;
+    }
+    
     /**
      * Nodo que servirá para poder interactuar con el arbol
      * @param <T> 

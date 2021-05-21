@@ -80,8 +80,18 @@ public class InicioSuper extends javax.swing.JFrame {
         btnSalones.setText("Salones");
 
         btnCursos.setText("Cursos");
+        btnCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCursosActionPerformed(evt);
+            }
+        });
 
         btnCatedraticos.setText("Catedráticos");
+        btnCatedraticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCatedraticosActionPerformed(evt);
+            }
+        });
 
         btnEstudiantes.setText("Estudiantes");
         btnEstudiantes.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +112,11 @@ public class InicioSuper extends javax.swing.JFrame {
         });
 
         btnGrafCatedraticos.setText("Graficar");
+        btnGrafCatedraticos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrafCatedraticosActionPerformed(evt);
+            }
+        });
 
         btnGrafAsignaciones.setText("Graficar");
         btnGrafAsignaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +226,9 @@ public class InicioSuper extends javax.swing.JFrame {
 
     private void btnGrafCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafCursosActionPerformed
         // TODO add your handling code here:
+        ManejadorGrafico m = new ManejadorGrafico();
+        String dotCode = manejadorPrincipal.getCursos().dotCodeCursos();
+        m.graficarEstadoMemoria(dotCode, "cursos");
     }//GEN-LAST:event_btnGrafCursosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -243,6 +261,25 @@ public class InicioSuper extends javax.swing.JFrame {
         String dotCode = manejadorPrincipal.getEstudiantes().dotCode();
         m.graficarEstadoMemoria(dotCode, "estudiantes");
     }//GEN-LAST:event_btnGrafAsignacionesActionPerformed
+
+    private void btnCatedraticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatedraticosActionPerformed
+        // TODO add your handling code here:
+        VentanaCatedratico v = new VentanaCatedratico(manejadorPrincipal);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnCatedraticosActionPerformed
+
+    private void btnGrafCatedraticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafCatedraticosActionPerformed
+        // TODO add your handling code here:
+        ManejadorGrafico m = new ManejadorGrafico();
+        String dotCode = manejadorPrincipal.getCatedraticos().dotCode();
+        m.graficarEstadoMemoria(dotCode, "catedraticos");
+    }//GEN-LAST:event_btnGrafCatedraticosActionPerformed
+
+    private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
+        // TODO add your handling code here:
+        VentanaCursos v = new VentanaCursos(manejadorPrincipal);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnCursosActionPerformed
 
     /**
      * @param args the command line arguments

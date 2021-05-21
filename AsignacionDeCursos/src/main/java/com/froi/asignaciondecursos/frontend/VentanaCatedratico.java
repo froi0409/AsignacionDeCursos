@@ -5,27 +5,27 @@
  */
 package com.froi.asignaciondecursos.frontend;
 
-import com.froi.asignaciondecursos.manejadores.ManejadorEstudiantes;
+import com.froi.asignaciondecursos.manejadores.ManejadorCatedraticos;
 import com.froi.asignaciondecursos.manejadores.ManejadorPrincipal;
 
 /**
  *
  * @author froi-pc
  */
-public class VentanaEstudiantes extends javax.swing.JFrame {
+public class VentanaCatedratico extends javax.swing.JFrame {
 
     private ManejadorPrincipal manejador;
     
     /**
-     * Creates new form VentanaEstudiantes
+     * Creates new form VentanaCatedratico
      */
-    public VentanaEstudiantes(ManejadorPrincipal manejador) {
+    public VentanaCatedratico(ManejadorPrincipal manejador) {
         initComponents();
         this.manejador = manejador;
         this.setLocationRelativeTo(null);
     }
 
-    private VentanaEstudiantes() {
+    private VentanaCatedratico() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -41,7 +41,7 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtCarnet = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -49,20 +49,20 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtCarnetM = new javax.swing.JTextField();
+        txtNumeroM = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         comboCampo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtDatoNuevo = new javax.swing.JTextField();
+        txtNuevoDato = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Carnet:");
+        jLabel1.setText("Numero de Identificacion:");
 
         jLabel2.setText("Nombre:");
 
-        jLabel3.setText("Direccion:");
+        jLabel3.setText("Dirección:");
 
         jButton1.setText("INGRESAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,15 +77,18 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCarnet)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNumero)
                     .addComponent(txtNombre)
-                    .addComponent(jLabel3)
                     .addComponent(txtDireccion)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(0, 106, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +96,7 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -102,26 +105,22 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Ingresar", jPanel2);
 
-        jLabel4.setText("Carnet:");
-
-        txtCarnetM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCarnetMActionPerformed(evt);
-            }
-        });
+        jLabel4.setText("Número de Identificación:");
 
         jLabel5.setText("Campo:");
 
         comboCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Direccion" }));
 
-        jLabel6.setText("Dato Nuevo:");
+        jLabel6.setText("Nuevo Dato:");
+
+        txtNuevoDato.setToolTipText("");
 
         jButton2.setText("MODIFICAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -137,15 +136,15 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCarnetM)
-                    .addComponent(comboCampo, 0, 251, Short.MAX_VALUE)
-                    .addComponent(txtDatoNuevo)
+                    .addComponent(txtNumeroM)
+                    .addComponent(comboCampo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNuevoDato)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 106, Short.MAX_VALUE))
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -155,7 +154,7 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCarnetM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumeroM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,10 +162,10 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDatoNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNuevoDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificar", jPanel1);
@@ -175,11 +174,13 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -187,29 +188,26 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ManejadorEstudiantes m = new ManejadorEstudiantes(manejador);
-        String carnet = txtCarnet.getText();
+        ManejadorCatedraticos m = new ManejadorCatedraticos(manejador);
+        String numero = txtNumero.getText();
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
-        m.crear(carnet, nombre, direccion);
-        txtCarnet.setText("");
+        m.crear(numero, nombre, direccion);
+        txtNumero.setText("");
         txtNombre.setText("");
         txtDireccion.setText("");
+        
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtCarnetMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCarnetMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCarnetMActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ManejadorEstudiantes m = new ManejadorEstudiantes(manejador);
-        String carnet = txtCarnetM.getText();
+        ManejadorCatedraticos m = new ManejadorCatedraticos(manejador);
+        String numero = txtNumeroM.getText();
         String campo = (String) comboCampo.getSelectedItem();
-        String nuevoDato = txtDatoNuevo.getText();
-        m.modificar(carnet, campo, nuevoDato);
-        txtCarnetM.setText("");
-        txtDatoNuevo.setText("");
+        String nuevoDato = txtNuevoDato.getText();
+        m.modificar(numero, campo, nuevoDato);
+        txtNumeroM.setText("");
+        txtNuevoDato.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -229,20 +227,20 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCatedratico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCatedratico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCatedratico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaCatedratico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaEstudiantes().setVisible(true);
+                new VentanaCatedratico().setVisible(true);
             }
         });
     }
@@ -260,10 +258,10 @@ public class VentanaEstudiantes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField txtCarnet;
-    private javax.swing.JTextField txtCarnetM;
-    private javax.swing.JTextField txtDatoNuevo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNuevoDato;
+    private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtNumeroM;
     // End of variables declaration//GEN-END:variables
 }

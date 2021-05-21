@@ -135,11 +135,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cursos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCursosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCatedraticos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Catedr&#xe1;ticos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCatedraticosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEstudiantes">
       <Properties>
@@ -171,6 +177,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Graficar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGrafCatedraticosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnGrafAsignaciones">
       <Properties>
