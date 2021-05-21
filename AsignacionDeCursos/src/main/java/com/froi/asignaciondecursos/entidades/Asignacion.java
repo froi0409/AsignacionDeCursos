@@ -54,5 +54,8 @@ public class Asignacion {
         this.eFinal = eFinal;
     }
     
-    
+    @Override
+    public String toString() {
+        return "Asignacion:\nEstudiante: " + estudiante.getCarnet() + "\nCurso: " + curso.getCodigo() + "\nZona: " + zona + "\nFinal: " + eFinal;
+    }
 }

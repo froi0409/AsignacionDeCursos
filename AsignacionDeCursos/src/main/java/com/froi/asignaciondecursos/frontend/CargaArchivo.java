@@ -25,6 +25,7 @@ public class CargaArchivo extends javax.swing.JFrame {
     public CargaArchivo(ManejadorPrincipal manejadorPrincipal) {
         initComponents();
         this.manejadorPrincipal = manejadorPrincipal;
+        this.setLocationRelativeTo(null);
     }
 
     private CargaArchivo() {

@@ -74,6 +74,79 @@ public class ListaDobleEnlazadaC <T> {
         return null;
     }
     
+    
+    public boolean eliminar(long id) {
+        Nodo aux = raiz;
+        //Aplicamos caso en el que solo está la raíz
+        if(tamaño == 1 && raiz.getIdLong() == id) {
+            raiz.data = null;
+            raiz = null;
+        }
+        if(raiz.getIdLong() == id) {
+            raiz.getSiguiente().setAnterior(fin);
+            fin.setSiguiente(raiz.getSiguiente());
+            raiz = raiz.getSiguiente();
+            aux.setData(null);
+            aux = null;
+            return true;
+        } else if(fin.getIdLong() == id) {
+            aux = fin;
+            raiz.setAnterior(fin.getAnterior());
+            fin.getAnterior().setSiguiente(raiz);
+            fin = fin.getAnterior();
+            aux.setData(null);
+            aux = null;
+            return true;
+        }
+        do {
+            if(aux.getIdLong() == id) {
+                aux.getSiguiente().setAnterior(aux.getAnterior());
+                aux.getAnterior().setSiguiente(aux.getSiguiente());
+                aux.setData(null);
+                aux = null;
+                return true;
+            }
+            aux = aux.getSiguiente();
+        } while(aux != raiz);
+        return false;
+    }
+    
+    public boolean eliminar(String id) {
+        Nodo aux = raiz;
+        //Aplicamos caso en el que solo está la raíz
+        if(tamaño == 1 && raiz.getId().equals(id)) {
+            raiz.data = null;
+            raiz = null;
+        }
+        if(raiz.getId().equals(id)) {
+            raiz.getSiguiente().setAnterior(fin);
+            fin.setSiguiente(raiz.getSiguiente());
+            raiz = raiz.getSiguiente();
+            aux.setData(null);
+            aux = null;
+            return true;
+        } else if(fin.getId().equals(id)) {
+            aux = fin;
+            raiz.setAnterior(fin.getAnterior());
+            fin.getAnterior().setSiguiente(raiz);
+            fin = fin.getAnterior();
+            aux.setData(null);
+            aux = null;
+            return true;
+        }
+        do {
+            if(aux.getId().equals(id)) {
+                aux.getSiguiente().setAnterior(aux.getAnterior());
+                aux.getAnterior().setSiguiente(aux.getSiguiente());
+                aux.setData(null);
+                aux = null;
+                return true;
+            }
+            aux = aux.getSiguiente();
+        } while(aux != raiz);
+        return false;
+    }
+    
     public T get(int pos) {
         if(raiz == null) {
             throw new IndexOutOfBoundsException("La lista está vacía");
@@ -146,6 +219,9 @@ public class ListaDobleEnlazadaC <T> {
             if(data instanceof Curso) {
                 Curso prov = (Curso) data;
                 return prov.getCodigo();
+            } else if(data instanceof Integer) {
+                Integer prov = (Integer) data;
+                return prov;
             }
             return 0;
         }

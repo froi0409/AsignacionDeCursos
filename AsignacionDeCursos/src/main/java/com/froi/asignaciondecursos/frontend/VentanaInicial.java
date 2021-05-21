@@ -23,6 +23,7 @@ public class VentanaInicial extends javax.swing.JFrame {
     public VentanaInicial() {
         initComponents();
         manejadorPrincipal = new ManejadorPrincipal();
+        this.setLocationRelativeTo(null);
     }
 
     /**

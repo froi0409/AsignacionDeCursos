@@ -22,6 +22,7 @@ public class InicioSuper extends javax.swing.JFrame {
     public InicioSuper(ManejadorPrincipal manejadorPrincipal) {
         initComponents();
         this.manejadorPrincipal = manejadorPrincipal;
+        this.setLocationRelativeTo(null);
     }
 
     private InicioSuper() {
@@ -37,11 +38,54 @@ public class InicioSuper extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        btnEdificios = new javax.swing.JButton();
+        btnSalones = new javax.swing.JButton();
+        btnCursos = new javax.swing.JButton();
+        btnCatedraticos = new javax.swing.JButton();
+        btnAsignaciones = new javax.swing.JButton();
+        btnGrafEdificios = new javax.swing.JButton();
+        btnGrafSalones = new javax.swing.JButton();
+        btnGrafCursos = new javax.swing.JButton();
+        btnGrafCatedraticos = new javax.swing.JButton();
+        btnGrafAsignaciones = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Opciones:");
+
+        btnEdificios.setText("Edificios");
+        btnEdificios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdificiosActionPerformed(evt);
+            }
+        });
+
+        btnSalones.setText("Salones");
+
+        btnCursos.setText("Cursos");
+
+        btnCatedraticos.setText("Catedráticos");
+
+        btnAsignaciones.setText("Asignaciones");
+
+        btnGrafEdificios.setText("Graficar");
+
+        btnGrafSalones.setText("Graficar");
+
+        btnGrafCursos.setText("Graficar");
+        btnGrafCursos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGrafCursosActionPerformed(evt);
+            }
+        });
+
+        btnGrafCatedraticos.setText("Graficar");
+
+        btnGrafAsignaciones.setText("Graficar");
 
         jMenu1.setText("Acciones");
 
@@ -61,11 +105,50 @@ public class InicioSuper extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(btnEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCatedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGrafEdificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGrafSalones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGrafCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGrafCatedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGrafAsignaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEdificios)
+                    .addComponent(btnGrafEdificios))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalones)
+                    .addComponent(btnGrafSalones))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCursos)
+                    .addComponent(btnGrafCursos))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCatedraticos)
+                    .addComponent(btnGrafCatedraticos))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAsignaciones)
+                    .addComponent(btnGrafAsignaciones))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -76,6 +159,16 @@ public class InicioSuper extends javax.swing.JFrame {
         CargaArchivo carga = new CargaArchivo(manejadorPrincipal);
         carga.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void btnEdificiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdificiosActionPerformed
+        // TODO add your handling code here:
+        VentanaEdificios v = new VentanaEdificios(manejadorPrincipal);
+        v.setVisible(true);
+    }//GEN-LAST:event_btnEdificiosActionPerformed
+
+    private void btnGrafCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafCursosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGrafCursosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,6 +206,17 @@ public class InicioSuper extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsignaciones;
+    private javax.swing.JButton btnCatedraticos;
+    private javax.swing.JButton btnCursos;
+    private javax.swing.JButton btnEdificios;
+    private javax.swing.JButton btnGrafAsignaciones;
+    private javax.swing.JButton btnGrafCatedraticos;
+    private javax.swing.JButton btnGrafCursos;
+    private javax.swing.JButton btnGrafEdificios;
+    private javax.swing.JButton btnGrafSalones;
+    private javax.swing.JButton btnSalones;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

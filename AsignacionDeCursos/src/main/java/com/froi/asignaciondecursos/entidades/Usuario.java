@@ -54,4 +54,8 @@ public class Usuario {
         this.tipo = tipo;
     }
     
+    @Override
+    public String toString() {
+        return "Usuario:\nUsuario: " + usuario + "\nNombre: " + nombre + "\nContraseña: " + contraseña + "\nTipo: " + tipo;
+    }
 }

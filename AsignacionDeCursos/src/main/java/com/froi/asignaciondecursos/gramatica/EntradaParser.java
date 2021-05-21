@@ -188,6 +188,8 @@ public class EntradaParser extends java_cup.runtime.lr_parser {
 
     private ListaDobleEnlazadaC<Edificio> edificios;
     private ListaDobleEnlazadaC<Curso> cursos;
+    private ListaDobleEnlazadaC<Asignacion> asignaciones;
+    private ListaDobleEnlazadaC<Usuario> usuarios;
     private ArbolAVL<Catedratico> catedraticos;
     private JTextArea salida;
     private TablaHash estudiantes;
@@ -196,6 +198,8 @@ public class EntradaParser extends java_cup.runtime.lr_parser {
         super(lexer);
         this.edificios = manejadorPrincipal.getEdificios();
         this.cursos = manejadorPrincipal.getCursos();
+        this.asignaciones = manejadorPrincipal.getAsignaciones();
+        this.usuarios = manejadorPrincipal.getUsuarios();
         this.catedraticos = manejadorPrincipal.getCatedraticos();
         this.estudiantes = manejadorPrincipal.getEstudiantes();
         this.salida = salida;
@@ -361,7 +365,25 @@ class CUP$EntradaParser$actions {
 		int v4right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		String v4 = (String)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
-
+                    try {
+                        String usuario = v1.toString(); String nombre = v2.toString().replace("\"", ""); String contraseña = v3.toString(); String tipo = v4;
+                        if(tipo.equals("estudiante")) {
+                            Estudiante estudiante;
+                            if((estudiante = estudiantes.buscar(Integer.parseInt(usuario))) != null) {
+                                Usuario usuarioProv = new Usuario(usuario, nombre, contraseña, tipo);
+                                usuarios.insertar(usuarioProv);
+                                salida.append(usuarioProv + "\n\n");
+                            } else {
+                                salida.append("No se encontró al estudiante " + usuario + ".\n\n");
+                            }
+                        } else {
+                            Usuario usuarioProv = new Usuario(usuario, nombre, contraseña, tipo);
+                            usuarios.insertar(usuarioProv);
+                            salida.append(usuarioProv + "\n\n");
+                        }
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al tratar de leer un usuario. Linea: " + v1left + " - Columna: " + v1right);
+                    }
                 
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("usuarios",3, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-9)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }
@@ -581,7 +603,29 @@ class CUP$EntradaParser$actions {
 		int v4right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v4 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
 		
-
+                        try {
+                            long carnetEstudiante = Long.parseLong(v1.toString()); long codigoCurso = Long.parseLong(v2.toString()); int zona = Integer.parseInt(v3.toString()); int eFinal = Integer.parseInt(v4.toString());
+                            boolean comprobador = true;
+                            Estudiante estudiante;
+                            Curso curso;
+                            if((estudiante = estudiantes.buscar(carnetEstudiante)) == null) {
+                                comprobador = false;
+                                salida.append("No se encontró al estudiante con carnet: " + carnetEstudiante + "\n");
+                            }
+                            if((curso = cursos.buscar(codigoCurso)) == null) {
+                                comprobador = false;
+                                salida.append("No se encontró el curso con código: " + codigoCurso + "\n");
+                            }
+                            if(comprobador) {
+                                Asignacion asignacion = new Asignacion(estudiante, curso, zona, eFinal);
+                                asignaciones.insertar(asignacion);
+                                salida.append(asignacion + "\n\n");
+                            } else {
+                                salida.append("\n");
+                            }
+                        } catch(Exception e) {
+                            salida.append("Ocurrió un error al tratar de realizar una asignacion. Linea: " + v1left + " - Columna: " + v1right + "\n\n");
+                        }
                     
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("asignaciones",10, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-9)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }

@@ -25,6 +25,19 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ListaDobleEnlazadaC<Integer> l = new ListaDobleEnlazadaC<>();
+        l.insertar(0);
+        l.insertar(1);
+        l.insertar(2);
+        l.insertar(3);
+        l.insertar(4);
+        l.insertar(5);
+        l.insertar(6);
+        l.imprimirDatos();
+        System.out.println("\n\n");
+        l.eliminar(6);
+        l.insertar(7);
+        l.imprimirDatos();
         VentanaInicial v = new VentanaInicial();
         v.setVisible(true);
     }

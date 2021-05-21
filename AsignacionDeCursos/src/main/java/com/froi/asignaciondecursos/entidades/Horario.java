@@ -19,7 +19,7 @@ public class Horario {
     private Curso curso;
     private Catedratico catedratico;
     private ListaDobleEnlazadaC<Asignacion> asignaciones;
-
+    
     public Horario(long codigo) {
         this.codigo = codigo;
     }
