@@ -81,6 +81,35 @@ public class ArbolAVL <T> {
         
     }
     
+    public T buscar(long id) {
+        Nodo<T> aux;
+        if((aux = buscarNodo(id, raiz)) !=  null) {
+            return aux.getData();
+        } else {
+            return null;
+        }
+    }
+    
+    public Nodo<T> buscarNodo(long id, Nodo<T> nodo) {
+        if(raiz == null) {
+            return null;
+        }
+        try {
+            if(id == nodo.getIdentificador()) {
+                return nodo;
+            }
+            if(id > nodo.getIdentificador()) {
+                return buscarNodo(id, nodo.getDerecho());
+            }
+            if(id < nodo.getIdentificador()) {
+                return buscarNodo(id, nodo.getIzquierdo());
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return null;
+    }
+
     public void equilibrar(Nodo<T> aux) {
         if(aux.getIzquierdo() == null && aux.getDerecho() != null) {
             aux.setAltura(aux.getDerecho().getAltura() + 1);
@@ -196,8 +225,8 @@ public class ArbolAVL <T> {
         }
         
         public long getIdentificador() {
-            if(data instanceof Integer) {
-                return (Integer) data;
+            if(data instanceof Long) {
+                return (Long) data;
             } else if(data instanceof Catedratico) {
                 Catedratico prov = (Catedratico) data;
                 return prov.getId();

@@ -12,7 +12,7 @@ import com.froi.asignaciondecursos.estructuras.ListaDobleEnlazadaC;
  * @author froi-pc
  */
 public class Horario {
-    private int codigo;
+    private long codigo;
     private String rangoHora;
     private String dia;
     private Salon salon;
@@ -20,11 +20,15 @@ public class Horario {
     private Catedratico catedratico;
     private ListaDobleEnlazadaC<Asignacion> asignaciones;
 
-    public int getCodigo() {
+    public Horario(long codigo) {
+        this.codigo = codigo;
+    }
+    
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 

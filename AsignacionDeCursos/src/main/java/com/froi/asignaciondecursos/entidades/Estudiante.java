@@ -10,15 +10,19 @@ package com.froi.asignaciondecursos.entidades;
  * @author froi-pc
  */
 public class Estudiante {
-    private int carnet;
+    private long carnet;
     private String nombre;
     private String direccion;
 
-    public int getCarnet() {
+    public Estudiante(long carnet) {
+        this.carnet = carnet;
+    }
+    
+    public long getCarnet() {
         return carnet;
     }
 
-    public void setCarnet(int carnet) {
+    public void setCarnet(long carnet) {
         this.carnet = carnet;
     }
 

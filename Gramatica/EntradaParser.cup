@@ -62,6 +62,9 @@ opciones ::=    usuarios PUNTO_COMA
                 ;
 
 usuarios ::=    USUARIO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 COMA tipo_usuario:v4 PARC
+                {:
+                    
+                :}
                 ;
 
 tipo_usuario ::=    A_COLABORADOR:val       {:RESULT = val.toString();:}

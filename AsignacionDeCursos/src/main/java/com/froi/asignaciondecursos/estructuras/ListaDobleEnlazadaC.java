@@ -58,6 +58,30 @@ public class ListaDobleEnlazadaC <T> {
         } while(aux != raiz);
         return null;
     }
+
+    public T get(int pos) {
+        if(raiz == null) {
+            throw new IndexOutOfBoundsException("La lista está vacía");
+        } else {
+            int cont = 0;
+            Nodo aux = raiz;
+            do {
+                if(cont == pos) {
+                    return (T) aux.getData();
+                }
+                aux = aux.getSiguiente();
+            } while(aux != raiz);
+        }
+        return null;
+    }
+    
+    public int getTamaño() {
+        return tamaño;
+    }
+
+    public void setTamaño(int tamaño) {
+        this.tamaño = tamaño;
+    }
     
     /**
      * Imprime en consola todos los datos que la lista posee
