@@ -11,6 +11,7 @@ import com.froi.asignaciondecursos.entidades.Edificio;
 import com.froi.asignaciondecursos.entidades.Usuario;
 import com.froi.asignaciondecursos.estructuras.ArbolAVL;
 import com.froi.asignaciondecursos.estructuras.ListaDobleEnlazadaC;
+import com.froi.asignaciondecursos.estructuras.TablaHash;
 
 /**
  *
@@ -22,12 +23,14 @@ public class ManejadorPrincipal {
     private ListaDobleEnlazadaC<Edificio> edificios;
     private ListaDobleEnlazadaC<Curso> cursos;
     private ArbolAVL<Catedratico> catedraticos;
-     
+    private TablaHash estudiantes; 
+    
     public ManejadorPrincipal() {
         this.usuarios = new ListaDobleEnlazadaC<>();
         this.edificios = new ListaDobleEnlazadaC<>();
         this.cursos = new ListaDobleEnlazadaC<>();
         this.catedraticos = new ArbolAVL<>();
+        this.estudiantes = new TablaHash();
         
         //Insertamos al super usuario
         usuarios.insertar(new Usuario("04092000", "Fernando Ocaña", "admin123", "super"));
@@ -47,6 +50,14 @@ public class ManejadorPrincipal {
 
     public ArbolAVL<Catedratico> getCatedraticos() {
         return catedraticos;
+    }
+
+    public TablaHash getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(TablaHash estudiantes) {
+        this.estudiantes = estudiantes;
     }
     
 }

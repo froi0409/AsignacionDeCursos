@@ -14,8 +14,10 @@ public class Estudiante {
     private String nombre;
     private String direccion;
 
-    public Estudiante(long carnet) {
+    public Estudiante(long carnet, String nombre, String direccion) {
         this.carnet = carnet;
+        this.nombre = nombre;
+        this.direccion = direccion;
     }
     
     public long getCarnet() {
@@ -42,4 +44,8 @@ public class Estudiante {
         this.direccion = direccion;
     }
     
+    @Override
+    public String toString() {
+        return "Estudiante:\nCarnet: " + carnet + "\nNombre: " + nombre + "\nDirección: " + direccion;
+    }
 }

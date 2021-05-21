@@ -25,6 +25,31 @@ public class TablaHash {
         this.tamaño = 0;
         this.array = new Estudiante[tamañoArray];
     }
+
+    public Estudiante buscar(long carnet) {
+        int posicion = funcionDispersion(carnet, tamañoArray);
+        int cont = 0;
+        if(array[posicion].getCarnet() == carnet) {
+            return array[posicion];
+        } else {
+            boolean comprobador = false;
+            do{
+                cont++;
+                posicion = dobleDispersion(carnet, cont);
+                if(array[posicion].getCarnet() == carnet) {
+                    return array[posicion];
+                } else if(array[posicion] == null) {
+                    comprobador = true;
+                    return null;
+                }
+                if(cont == 300) {
+                    comprobador = true;
+                }
+            }while(!comprobador);
+            
+        }
+        return null;
+    }
     
     public void insertar(Estudiante data) {
         Estudiante prov = data;
@@ -127,7 +152,6 @@ public class TablaHash {
     public int funcionDispersion(long llave, int tamaño) {
         return (int) llave % tamaño;
     }
-    
     
     /**
      * 

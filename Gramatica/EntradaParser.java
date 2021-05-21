@@ -187,13 +187,17 @@ public class EntradaParser extends java_cup.runtime.lr_parser {
 
 
     private ListaDobleEnlazadaC<Edificio> edificios;
+    private ListaDobleEnlazadaC<Curso> cursos;
     private ArbolAVL<Catedratico> catedraticos;
     private JTextArea salida;
+    private TablaHash estudiantes;
 
     public EntradaParser(EntradaLexer lexer, ManejadorPrincipal manejadorPrincipal, JTextArea salida) {
         super(lexer);
         this.edificios = manejadorPrincipal.getEdificios();
+        this.cursos = manejadorPrincipal.getCursos();
         this.catedraticos = manejadorPrincipal.getCatedraticos();
+        this.estudiantes = manejadorPrincipal.getEstudiantes();
         this.salida = salida;
         this.salida.setText("Resultado de la lectura: \n");
     }
@@ -356,7 +360,9 @@ class CUP$EntradaParser$actions {
 		int v4left = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).left;
 		int v4right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		String v4 = (String)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
+		
 
+                
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("usuarios",3, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-9)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }
           return CUP$EntradaParser$result;
@@ -458,7 +464,17 @@ class CUP$EntradaParser$actions {
 		int v4left = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).left;
 		int v4right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v4 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
+		
+                    try {
+                        long codigo = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); int semestre = Integer.parseInt(v3.toString()); int creditos = Integer.parseInt(v4.toString());
+                        Curso curso = new Curso(codigo, nombre, semestre, creditos);
+                        cursos.insertar(curso);
+                        salida.append(curso + "\n\n");
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al leer los cursos. Linea: " + v1left + " - Columna: " + v1right + "\n\n");
+                    }
 
+                
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("cursos",6, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-9)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }
           return CUP$EntradaParser$result;
@@ -476,7 +492,16 @@ class CUP$EntradaParser$actions {
 		int v3left = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).left;
 		int v3right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v3 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
-
+		
+                    long carnet = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); String direccion = v3.toString().replace("\"", "");
+                    try {
+                        Estudiante estudianteProv = new Estudiante(carnet, nombre, direccion);
+                        estudiantes.insertar(estudianteProv);
+                        salida.append(estudianteProv + "\n\n");
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al tratar de añadir al estudiante " + carnet + " - " + nombre + "\n\n");
+                    }
+                
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("estudiantes",7, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-7)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }
           return CUP$EntradaParser$result;
@@ -555,7 +580,9 @@ class CUP$EntradaParser$actions {
 		int v4left = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).left;
 		int v4right = ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).right;
 		Object v4 = (Object)((java_cup.runtime.Symbol) CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-1)).value;
+		
 
+                    
               CUP$EntradaParser$result = parser.getSymbolFactory().newSymbol("asignaciones",10, ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.elementAt(CUP$EntradaParser$top-9)), ((java_cup.runtime.Symbol)CUP$EntradaParser$stack.peek()), RESULT);
             }
           return CUP$EntradaParser$result;

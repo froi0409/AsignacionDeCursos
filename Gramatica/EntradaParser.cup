@@ -11,13 +11,17 @@ class EntradaParser;
 parser code{:
 
     private ListaDobleEnlazadaC<Edificio> edificios;
+    private ListaDobleEnlazadaC<Curso> cursos;
     private ArbolAVL<Catedratico> catedraticos;
     private JTextArea salida;
+    private TablaHash estudiantes;
 
     public EntradaParser(EntradaLexer lexer, ManejadorPrincipal manejadorPrincipal, JTextArea salida) {
         super(lexer);
         this.edificios = manejadorPrincipal.getEdificios();
+        this.cursos = manejadorPrincipal.getCursos();
         this.catedraticos = manejadorPrincipal.getCatedraticos();
+        this.estudiantes = manejadorPrincipal.getEstudiantes();
         this.salida = salida;
         this.salida.setText("Resultado de la lectura: \n");
     }
@@ -63,7 +67,7 @@ opciones ::=    usuarios PUNTO_COMA
 
 usuarios ::=    USUARIO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 COMA tipo_usuario:v4 PARC
                 {:
-                    
+
                 :}
                 ;
 
@@ -96,9 +100,30 @@ salones ::=     SALON PARA ALFANUMERICO:v1 COMA NUMERO:v2 COMA NUMERO:v3 PARC
                 ;
 
 cursos ::=      CURSO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA NUMERO:v3 COMA NUMERO:v4 PARC
+                {:
+                    try {
+                        long codigo = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); int semestre = Integer.parseInt(v3.toString()); int creditos = Integer.parseInt(v4.toString());
+                        Curso curso = new Curso(codigo, nombre, semestre, creditos);
+                        cursos.insertar(curso);
+                        salida.append(curso + "\n\n");
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al leer los cursos. Linea: " + v1left + " - Columna: " + v1right + "\n\n");
+                    }
+
+                :}
                 ;
 
 estudiantes ::= ESTUDIANTE PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 PARC
+                {:
+                    long carnet = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", ""); String direccion = v3.toString().replace("\"", "");
+                    try {
+                        Estudiante estudianteProv = new Estudiante(carnet, nombre, direccion);
+                        estudiantes.insertar(estudianteProv);
+                        salida.append(estudianteProv + "\n\n");
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al tratar de añadir al estudiante " + carnet + " - " + nombre + "\n\n");
+                    }
+                :}
                 ;
 
 catedraticos ::=    CATEDRATICO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 PARC
@@ -119,4 +144,7 @@ horarios ::=    HORARIO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3
                 ;
 
 asignaciones ::=    ASIGNAR PARA NUMERO:v1 COMA NUMERO:v2 COMA NUMERO:v3 COMA NUMERO:v4 PARC
+                    {:
+
+                    :}
                     ;

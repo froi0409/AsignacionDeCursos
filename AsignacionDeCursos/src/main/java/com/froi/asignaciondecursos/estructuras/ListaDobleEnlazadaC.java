@@ -5,6 +5,7 @@
  */
 package com.froi.asignaciondecursos.estructuras;
 
+import com.froi.asignaciondecursos.entidades.Curso;
 import com.froi.asignaciondecursos.entidades.Edificio;
 import com.froi.asignaciondecursos.entidades.Usuario;
 
@@ -59,6 +60,20 @@ public class ListaDobleEnlazadaC <T> {
         return null;
     }
 
+    public T buscar(long id) {
+        Nodo aux = raiz;
+        if(tamaño == 1 && id == raiz.getIdLong()) {
+            return raiz.getData();
+        }
+        do {
+            if(id == aux.getIdLong()) {
+                return (T) aux.getData();
+            }
+            aux = aux.getSiguiente();
+        } while(aux != raiz);
+        return null;
+    }
+    
     public T get(int pos) {
         if(raiz == null) {
             throw new IndexOutOfBoundsException("La lista está vacía");
@@ -125,6 +140,14 @@ public class ListaDobleEnlazadaC <T> {
             } else {
                 return null;
             }
+        }
+        
+        public long getIdLong() {
+            if(data instanceof Curso) {
+                Curso prov = (Curso) data;
+                return prov.getCodigo();
+            }
+            return 0;
         }
         
         public void setData(T data) {
