@@ -1,0 +1,194 @@
+package com.froi.asignaciondecursos.gramatica;
+
+import com.froi.asignaciondecursos.entidades.*;
+import com.froi.asignaciondecursos.estructuras.*;
+import com.froi.asignaciondecursos.manejadores.*;
+import java_cup.runtime.*;
+import javax.swing.JTextArea;
+
+class EntradaParser;
+
+parser code{:
+
+    private ListaDobleEnlazadaC<Edificio> edificios;
+    private ListaDobleEnlazadaC<Curso> cursos;
+    private ListaDobleEnlazadaC<Asignacion> asignaciones;
+    private ListaDobleEnlazadaC<Usuario> usuarios;
+    private ArbolAVL<Catedratico> catedraticos;
+    private JTextArea salida;
+    private TablaHash estudiantes;
+
+    public EntradaParser(EntradaLexer lexer, ManejadorPrincipal manejadorPrincipal, JTextArea salida) {
+        super(lexer);
+        this.edificios = manejadorPrincipal.getEdificios();
+        this.cursos = manejadorPrincipal.getCursos();
+        this.asignaciones = manejadorPrincipal.getAsignaciones();
+        this.usuarios = manejadorPrincipal.getUsuarios();
+        this.catedraticos = manejadorPrincipal.getCatedraticos();
+        this.estudiantes = manejadorPrincipal.getEstudiantes();
+        this.salida = salida;
+        this.salida.setText("Resultado de la lectura: \n");
+    }
+    public void report_error(String message, Object info) {
+        System.out.println("reporterror");
+    }
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("reportfatal");
+    }
+    public void syntax_error(Symbol cur_token) {
+        System.out.println("syntaxerr " + symbl_name_from_id(cur_token.sym) + " " + cur_token.left + " - " + cur_token.right);
+    }
+    protected int error_sync_size() {
+        return 1;
+    }
+
+:}
+
+terminal USUARIO, EDIFICIO, SALON, CURSO, ESTUDIANTE, CATEDRATICO, HORARIO, ASIGNAR, A_COLABORADOR, A_ESTUDIANTE, A_SUPER, ALFANUMERICO, NUMERO;
+terminal PARA, PARC, PUNTO_COMA, COMA;
+
+non terminal inicio;
+non terminal String tipo_usuario;
+non terminal opciones, usuarios, edificios, salones, cursos, estudiantes, catedraticos, horarios, asignaciones;
+
+start with inicio;
+
+inicio ::=  inicio opciones
+            |
+            //| inicio error
+            //| error
+            ;
+
+opciones ::=    usuarios PUNTO_COMA
+                | edificios PUNTO_COMA
+                | salones PUNTO_COMA
+                | cursos PUNTO_COMA
+                | estudiantes PUNTO_COMA
+                | catedraticos PUNTO_COMA
+                | horarios PUNTO_COMA
+                | asignaciones PUNTO_COMA
+                ;
+
+usuarios ::=    USUARIO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 COMA tipo_usuario:v4 PARC
+                {:
+                    try {
+                        String usuario = v1.toString(); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); String contraseña = v3.toString().replace("\"", "").replace("”", "").replace("“", ""); String tipo = v4;
+                        if(tipo.equals("estudiante")) {
+                            Estudiante estudiante;
+                            if((estudiante = estudiantes.buscar(Integer.parseInt(usuario))) != null) {
+                                Usuario usuarioProv = new Usuario(usuario, nombre, contraseña, tipo);
+                                usuarios.insertar(usuarioProv);
+                                salida.append(usuarioProv + "\n\n");
+                            } else {
+                                salida.append("No se encontró al estudiante " + usuario + ".\n\n");
+                            }
+                        } else {
+                            Usuario usuarioProv = new Usuario(usuario, nombre, contraseña, tipo);
+                            usuarios.insertar(usuarioProv);
+                            salida.append(usuarioProv + "\n\n");
+                        }
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al tratar de leer un usuario. Linea: " + v1left + " - Columna: " + v1right);
+                    }
+                :}
+                ;
+
+tipo_usuario ::=    A_COLABORADOR:val       {:RESULT = val.toString();:}
+                    | A_ESTUDIANTE:val      {:RESULT = val.toString();:}
+                    | A_SUPER:val           {:RESULT = val.toString();:}
+                    ;
+
+edificios ::=   EDIFICIO PARA ALFANUMERICO:v1 PARC
+                {:
+                    Edificio edificio = new Edificio(v1.toString().replace("\"", "").replace("”", "").replace("“", ""));
+                    edificios.insertar(edificio);
+                    salida.append(edificio + "\n\n");
+                :}
+                ;
+
+salones ::=     SALON PARA ALFANUMERICO:v1 COMA NUMERO:v2 COMA NUMERO:v3 PARC
+                {:
+                    String nombre = v1.toString().replace("\"", "").replace("”", "").replace("“", ""); int numero = Integer.parseInt(v2.toString()); int capacidad = Integer.parseInt(v3.toString());
+                    Edificio edificio;
+                    if((edificio = edificios.buscar(nombre)) != null) {
+                        ListaEnlazada salonesEdificio = edificio.getSalones();
+                        Salon salonProv = new Salon(numero, capacidad);
+                        salonesEdificio.insertar(salonProv);
+                        salida.append("En el Edificio " + nombre + " se ha creado:\n" + salonProv + "\n\n");
+                    } else {
+                        salida.append("No se ha encontrado el edificio: " + nombre + ". El salón: " + numero + " no ha podido ser creado.\n\n");
+                    }
+                :}
+                ;
+
+cursos ::=      CURSO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA NUMERO:v3 COMA NUMERO:v4 PARC
+                {:
+                    try {
+                        long codigo = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); int semestre = Integer.parseInt(v3.toString()); int creditos = Integer.parseInt(v4.toString());
+                        Curso curso = new Curso(codigo, nombre, semestre, creditos);
+                        cursos.insertar(curso);
+                        salida.append(curso + "\n\n");
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al leer los cursos. Linea: " + v1left + " - Columna: " + v1right + "\n\n");
+                    }
+
+                :}
+                ;
+
+estudiantes ::= ESTUDIANTE PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 PARC
+                {:
+                    long carnet = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); String direccion = v3.toString().replace("\"", "").replace("”", "").replace("“", "");
+                    try {
+                        Estudiante estudianteProv = new Estudiante(carnet, nombre, direccion);
+                        estudiantes.insertar(estudianteProv);
+                        salida.append(estudianteProv + "\n\n");
+                    } catch(Exception e) {
+                        salida.append("Ocurrió un error al tratar de añadir al estudiante " + carnet + " - " + nombre + "\n\n");
+                    }
+                :}
+                ;
+
+catedraticos ::=    CATEDRATICO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 PARC
+                    {:
+                        long identificador = Long.parseLong(v1.toString()); String nombre = v2.toString().replace("\"", "").replace("”", "").replace("“", ""); String direccion = v3.toString().replace("\"", "").replace("”", "").replace("“", "");
+                        try {
+                            Catedratico catedraticoProv = new Catedratico(identificador, nombre, direccion);
+                            catedraticos.insertar(catedraticoProv);
+                            salida.append(catedraticoProv + "\n\n");
+                        } catch(Exception e) {
+                            System.out.println("Error al insertar al catedrático: ");
+                            salida.append("Problemas para añadir al catedrático " + nombre + ".El catedrático ya existe o el número de identificación es muy grande\n\n");
+                        }
+                    :}
+                    ;
+
+horarios ::=    HORARIO PARA NUMERO:v1 COMA ALFANUMERICO:v2 COMA ALFANUMERICO:v3 COMA NUMERO:v4 COMA NUMERO:v5 COMA ALFANUMERICO:v6 COMA NUMERO:v7 PARC
+                ;
+
+asignaciones ::=    ASIGNAR PARA NUMERO:v1 COMA NUMERO:v2 COMA NUMERO:v3 COMA NUMERO:v4 PARC
+                    {:
+                        try {
+                            long carnetEstudiante = Long.parseLong(v1.toString()); long codigoCurso = Long.parseLong(v2.toString()); int zona = Integer.parseInt(v3.toString()); int eFinal = Integer.parseInt(v4.toString());
+                            boolean comprobador = true;
+                            Estudiante estudiante;
+                            Curso curso;
+                            if((estudiante = estudiantes.buscar(carnetEstudiante)) == null) {
+                                comprobador = false;
+                                salida.append("No se encontró al estudiante con carnet: " + carnetEstudiante + "\n");
+                            }
+                            if((curso = cursos.buscar(codigoCurso)) == null) {
+                                comprobador = false;
+                                salida.append("No se encontró el curso con código: " + codigoCurso + "\n");
+                            }
+                            if(comprobador) {
+                                Asignacion asignacion = new Asignacion(estudiante, curso, zona, eFinal);
+                                asignaciones.insertar(asignacion);
+                                salida.append(asignacion + "\n\n");
+                            } else {
+                                salida.append("\n");
+                            }
+                        } catch(Exception e) {
+                            salida.append("Ocurrió un error al tratar de realizar una asignacion. Linea: " + v1left + " - Columna: " + v1right + "\n\n");
+                        }
+                    :}
+                    ;

@@ -1,0 +1,56 @@
+digraph G {
+nodesep=.05;
+rankdir=LR;
+node[shape=record,width=.1,height=.1];
+
+
+nodeo0 [label = "<f0> | <f1> | <f2> | <f3> | <f4> | <f5> | <f6> | <f7> | <f8> | <f9> | <f10> | <f11> | <f12> | <f13> | <f14> | <f15> | <f16> | <f17> | <f18> | <f19> | <f20> | <f21> | <f22> | <f23> | <f24> | <f25> | <f26> | <f27> | <f28> | <f29> | <f30> | <f31> | <f32> | <f33> | <f34> | <f35> | <f36> | <f37> | <f38> | <f39> | <f40> | <f41> | <f42> | ", height=2.5];
+node [width = 1.5];
+nodo1[label = "{ <n> 1-Fernando Marroquín-Mixco}"];
+nodo2[label = "{ <n> 2-Alfonso Antonio-Guatemala}"];
+nodo3[label = "{ <n> 3-Mario Morales-Villa Nueva}"];
+nodo4[label = "{ <n> 4-Juan Perez Buc-Villa Nueva}"];
+nodo5[label = "{ <n> 5-Mario Morales-Villa Nueva}"];
+nodo6[label = "{ <n> 6-Mario Morales-Villa Nueva}"];
+nodo7[label = "{ <n> 7-Mario Morales-Villa Nueva}"];
+nodo8[label = "{ <n> 8-Mario Morales-Villa Nueva}"];
+nodo9[label = "{ <n> 9-Mario Morales-Villa Nueva}"];
+nodo10[label = "{ <n> 10-Mario Morales-Villa Nueva}"];
+nodo11[label = "{ <n> 11-Mario Morales-Villa Nueva}"];
+nodo12[label = "{ <n> 12-Mario Morales-Villa Nueva}"];
+nodo13[label = "{ <n> 13-Mario Morales-Villa Nueva}"];
+nodo14[label = "{ <n> 14-Mario Morales-Villa Nueva}"];
+nodo15[label = "{ <n> 15-Mario Morales-Villa Nueva}"];
+nodo16[label = "{ <n> 16-Mario Morales-Villa Nueva}"];
+nodo17[label = "{ <n> 17-Mario Morales-Villa Nueva}"];
+nodo18[label = "{ <n> 18-Mario Morales-Villa Nueva}"];
+nodo19[label = "{ <n> 19-Mario Morales-Villa Nueva}"];
+nodo20[label = "{ <n> 200145785-Fernando Marroquín-Mixco}"];
+nodo21[label = "{ <n> 20-Mario Morales-Villa Nueva}"];
+nodo23[label = "{ <n> 200745781-Alfonso Antonio-Guatemala}"];
+nodo29[label = "{ <n> 200478542-Mario Morales-Villa Nueva}"];
+nodeo0:f1 -> nodo1:n;
+nodeo0:f2 -> nodo2:n;
+nodeo0:f3 -> nodo3:n;
+nodeo0:f4 -> nodo4:n;
+nodeo0:f5 -> nodo5:n;
+nodeo0:f6 -> nodo6:n;
+nodeo0:f7 -> nodo7:n;
+nodeo0:f8 -> nodo8:n;
+nodeo0:f9 -> nodo9:n;
+nodeo0:f10 -> nodo10:n;
+nodeo0:f11 -> nodo11:n;
+nodeo0:f12 -> nodo12:n;
+nodeo0:f13 -> nodo13:n;
+nodeo0:f14 -> nodo14:n;
+nodeo0:f15 -> nodo15:n;
+nodeo0:f16 -> nodo16:n;
+nodeo0:f17 -> nodo17:n;
+nodeo0:f18 -> nodo18:n;
+nodeo0:f19 -> nodo19:n;
+nodeo0:f20 -> nodo20:n;
+nodeo0:f21 -> nodo21:n;
+nodeo0:f23 -> nodo23:n;
+nodeo0:f29 -> nodo29:n;
+
+}
