@@ -26,15 +26,32 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         TablaHash tabla = new TablaHash();
-        tabla.insertar(new Estudiante(2018221));
-        tabla.insertar(new Estudiante(20191638));
-        tabla.insertar(new Estudiante(265468));
-        tabla.insertar(new Estudiante(3979));
-        tabla.insertar(new Estudiante(4787987));
-        tabla.insertar(new Estudiante(53651));
-        tabla.insertar(new Estudiante(6654654));
-        tabla.insertar(new Estudiante(2018221));
-        tabla.insertar(new Estudiante(2018221));
+        tabla.insertar(new Estudiante(1));
+        tabla.insertar(new Estudiante(2));
+        tabla.insertar(new Estudiante(3));
+        tabla.insertar(new Estudiante(4));
+        tabla.insertar(new Estudiante(5));
+        tabla.insertar(new Estudiante(6));
+        tabla.insertar(new Estudiante(7));
+        tabla.insertar(new Estudiante(8));
+        tabla.insertar(new Estudiante(9));
+        tabla.insertar(new Estudiante(10));
+        tabla.insertar(new Estudiante(11));
+        tabla.insertar(new Estudiante(12));
+        tabla.insertar(new Estudiante(13));
+        tabla.insertar(new Estudiante(14));
+        tabla.insertar(new Estudiante(15));
+        tabla.insertar(new Estudiante(16));
+        tabla.insertar(new Estudiante(17));
+        tabla.insertar(new Estudiante(18));
+        tabla.insertar(new Estudiante(19));
+        tabla.insertar(new Estudiante(20));
+        tabla.insertar(new Estudiante(21));
+        tabla.insertar(new Estudiante(22));
+        
+
+        
+        
         tabla.imprimir();
         
 //        if((prov = a.buscar(3)) != null) {
